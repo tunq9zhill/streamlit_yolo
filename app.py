@@ -26,27 +26,41 @@ if uploaded_file is not None:
 
   st.write("")
   st.write("Detecting...")
-  result = model(imgRGB, size=600)
+  results = model(imgRGB, size=600)
   
-  detect_class = result.pandas().xyxy[0] 
+  #detect_class = result.pandas().xyxy[0] 
   
   #labels, cord_thres = detect_class[:, :].numpy(), detect_class[:, :].numpy()
   
   #     xmin       ymin    xmax        ymax          confidence  class    name
   #0  148.605362   0.0    1022.523743  818.618286    0.813045      2      turtle
   
-  st.code(detect_class[['name', 'xmin','ymin', 'xmax', 'ymax']])
+  pred = results.pred[0]
+    
+  for det in pred:
+        
+        x1, y1, x2, y2, conf, cls = det.tolist()
+        clss = model.names[int(cls)]
+        #label = ['fire','smoke']
+    
+        cv2.rectangle(imgRGB, (int(x1), int(y1)), (int(x2), int(y2)), (0, 20, 255), 2)
+        cv2.putText(imgRGB, str(clss), (int(x1), int(y1)), cv2.FONT_HERSHEY_SIMPLEX, 1, (0, 20, 255), 2, cv2.LINE_AA)
+
+
+  
+  
+  #st.code(detect_class[['name', 'xmin','ymin', 'xmax', 'ymax']])
   
   
   
   #st.success(detect_class)
   
-  outputpath = 'output.jpg'
+  #outputpath = 'output.jpg'
   
-  result.render()  # render bbox in image
-  for im in result.ims:
-      im_base64 = Image.fromarray(im)
-      im_base64.save(outputpath)
-      img_ = Image.open(outputpath)
-      st.image(img_, caption='Model Prediction(s)')
+  #result.render()  # render bbox in image
+  #for im in result.ims:
+  #    im_base64 = Image.fromarray(im)
+  #    im_base64.save(outputpath)
+  #    img_ = Image.open(outputpath)
+  #   st.image(img_, caption='Model Prediction(s)')
 
