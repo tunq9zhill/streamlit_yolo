@@ -41,7 +41,7 @@ if uploaded_file is not None:
   
   
   
-  st.success(detect_class)
+  #st.success(detect_class)
   
   outputpath = 'output.jpg'
   
