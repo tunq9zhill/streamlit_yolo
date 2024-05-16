@@ -34,6 +34,11 @@ if uploaded_file is not None:
     for class_name, count in class_counts.items():
         st.write(f"- **{class_name.capitalize()}**: {count}")
 
+    for idx, row in detect_class.iterrows():
+        xmin, ymin, xmax, ymax, name = int(row['xmin']), int(row['ymin']), int(row['xmax']), int(row['ymax']), row['name']
+        cropped_image = imgRGB[ymin:ymax, xmin:xmax]
+        st.image(cropped_image, caption=f"{name.capitalize()} [{xmin}, {ymin}, {xmax}, {ymax}]")
+
   
     outputpath = 'output.jpg'
   
