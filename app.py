@@ -30,7 +30,10 @@ if uploaded_file is not None:
     # Count each class
     class_counts = detect_class['name'].value_counts().to_dict()
     st.write("Class counts:")
-    st.json(class_counts)
+    
+    for class_name, count in class_counts.items():
+        st.write(f"- **{class_name.capitalize()}**: {count}")
+
   
     outputpath = 'output.jpg'
   
@@ -41,5 +44,5 @@ if uploaded_file is not None:
         img_ = Image.open(outputpath)
         st.image(img_, caption='Model Prediction(s)')
   
-    st.code(detect_class.shape)
+
 
