@@ -48,7 +48,7 @@ if uploaded_file is not None:
     for idx, row in detect_class.iterrows():
         xmin, ymin, xmax, ymax, name = int(row['xmin']), int(row['ymin']), int(row['xmax']), int(row['ymax']), row['name']
         cropped_image = imgRGB[ymin:ymax, xmin:xmax]
-        st.image(cropped_image, caption=f"{name.capitalize()} ,width=300")
+        st.image(cropped_image, caption=f"{name.capitalize()}" ,width=300)
 
   
 
