@@ -26,7 +26,7 @@ if uploaded_file is not None:
 
   st.write("")
   st.write("Detecting...")
-  results = model(imgRGB, size=600)
+  result = model(imgRGB, size=600)
   
   detect_class = result.pandas().xyxy[0] 
   
