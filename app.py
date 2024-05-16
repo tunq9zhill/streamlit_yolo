@@ -50,5 +50,5 @@ if uploaded_file is not None:
       im_base64 = Image.fromarray(im)
       im_base64.save(outputpath)
       img_ = Image.open(outputpath)
-     st.image(img_, caption='Model Prediction(s)')
+      st.image(img_, caption='Model Prediction(s)')
 
