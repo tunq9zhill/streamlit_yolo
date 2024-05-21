@@ -12,15 +12,14 @@ st.write("Upload your Image...")
 
 model = torch.hub.load('ultralytics/yolov5', 'custom', path='models/last.pt', force_reload=True)
 
-def detect_objects(frame):
-    # Convert frame to a suitable format for YOLOv5
-    img = Image.fromarray(cv2.cvtColor(frame, cv2.COLOR_BGR2RGB))
-    results = model(img, size=640)  # Reduce size if needed
-    return results
 def main():
     run = st.checkbox('Run')
     stframe = st.empty()
     video_capture = cv2.VideoCapture(0)
+
+    if not video_capture.isOpened():
+        st.write("Error: Could not open webcam.")
+        return
 
     while run:
         ret, frame = video_capture.read()
@@ -39,6 +38,3 @@ def main():
 
 if __name__ == "__main__":
     main()
-  
-
-
