@@ -44,9 +44,11 @@ if uploaded_file is not None:
         im_base64.save(outputpath)
         img_ = Image.open(outputpath)
         st.image(img_, caption='Model Prediction(s)')
-    
+
+    '''
     for idx, row in detect_class.iterrows():
         xmin, ymin, xmax, ymax, name = int(row['xmin']), int(row['ymin']), int(row['xmax']), int(row['ymax']), row['name']
         cropped_image = imgRGB[ymin:ymax, xmin:xmax]
         st.image(cropped_image, caption=f"{name.capitalize()}" ,width=300)
+    '''
         
